@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Meşhur Adıyaman Çiğ Köftecisi Kadir Usta (Kahramanlar Şubesi • İşletmeci: Sedat Evcin) — Resmi Hızlı WhatsApp Sipariş Menüsü"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta
+      property="og:title"
+      content="Meşhur Adıyaman Çiğ Köftecisi Kadir Usta • Kahramanlar Menüsü"
+    />
+    <meta
+      property="og:description"
+      content="Ürün, garnitür (6 çeşit) ve sosunuzu seçip tek tıkla WhatsApp üzerinden hızlı sipariş verin. Kahramanlar Şubesi • Sedat Evcin."
+    />
+    <meta property="og:url" content="https://adiyaman-cigkofte-kahramanlar.github.io/" />
+    <meta property="og:image" content="https://adiyaman-cigkofte-kahramanlar.github.io/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#9F1239" />
+    <title>Meşhur Adıyaman Çiğ Köftecisi Kadir Usta • Kahramanlar Menüsü</title>
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+    <!-- Tailwind CSS v4 Play CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-brand-primary: #9f1239;
+        --color-brand-deep: #881337;
+        --color-canvas: #faf8f5;
+        --color-ink: #111827;
+      }
+    </style>
+
+    <!-- Yedek CSS katmanı: CDN erişimi olmasa dahi sayfa düzeni korunur -->
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        margin: 0;
+        background-color: #faf8f5;
+        color: #111827;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+          sans-serif;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background-color: rgba(17, 24, 39, 0.58);
+        backdrop-filter: blur(2px);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      @media (min-width: 640px) {
+        .modal-backdrop {
+          align-items: center;
+          padding: 1rem;
+        }
+      }
+      .modal-backdrop.hidden {
+        display: none !important;
+      }
+      .safe-bottom-pad {
+        padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px));
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#FAF8F5] text-gray-900 antialiased selection:bg-rose-200 selection:text-rose-950">
+    <!-- Üst Dükkan Başlığı -->
+    <header
+      class="bg-gradient-to-br from-[#881337] via-[#9F1239] to-[#7F1D1D] text-white shadow-md"
+    >
+      <div class="mx-auto max-w-2xl px-4 pt-4 pb-5">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img
+              src="./logo.png"
+              alt="Meşhur Adıyaman Çiğ Köftecisi Kadir Usta Kahramanlar Şubesi Logosu"
+              class="h-14 w-14 shrink-0 rounded-full object-contain drop-shadow-sm"
+            />
+            <div>
+              <h1 id="shopShortName" class="text-lg sm:text-xl font-extrabold tracking-tight leading-tight">
+                Meşhur Adıyaman Çiğ Köftecisi Kadir Usta
+              </h1>
+              <p id="shopBranchName" class="text-xs sm:text-sm text-rose-100 font-medium mt-0.5">
+                Kahramanlar Şubesi
+              </p>
+            </div>
+          </div>
+
+          <span
+            id="shopStatusBadge"
+            class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/15 border border-white/25 px-3 py-1 text-xs font-bold text-white"
+          >
+            ⏳ Kontrol Ediliyor
+          </span>
+        </div>
+
+        <p id="shopAddressText" class="mt-3 text-xs text-rose-100/95 flex items-center gap-1.5">
+          <svg
+            class="h-4 w-4 shrink-0 text-amber-200"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span>Kahramanlar Mah. 1420 Sk. No: 28/B, Konak/İzmir</span>
+        </p>
+
+        <!-- Özet Kural Rozetleri & Hızlı Konum Kontrolü -->
+        <div class="mt-3 flex flex-wrap items-center gap-2">
+          <span
+            id="minOrderBadge"
+            class="inline-flex items-center rounded-xl bg-white/15 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-xs"
+          >
+            Min. Paket: 75 TL
+          </span>
+          <button
+            id="headerGpsBtn"
+            type="button"
+            class="ml-auto inline-flex items-center gap-1.5 rounded-xl bg-amber-400 hover:bg-amber-300 active:scale-[0.98] px-3 py-1 text-xs font-extrabold text-gray-950 shadow-xs transition cursor-pointer"
+          >
+            <span>📍 Konumumu Kontrol Et</span>
+          </button>
+        </div>
+
+        <!-- Üst Konum Kontrol Sonucu -->
+        <div
+          id="headerGpsResult"
+          class="hidden mt-2.5 rounded-xl border px-3 py-2 text-xs font-medium"
+        ></div>
+      </div>
+    </header>
+
+    <!-- Dükkan Kapalı Uyarısı (KURAL-1) -->
+    <div id="shopClosedBanner" class="hidden mx-auto max-w-2xl px-4 mt-3">
+      <div
+        class="rounded-2xl border-2 border-red-300 bg-red-50 px-4 py-3 text-sm font-semibold text-red-900 shadow-xs"
+      >
+        🌙 Şubemiz şu anda paket servise kapalıdır. Çalışma saatlerimiz içinde tekrar bekleriz.
+      </div>
+    </div>
+
+    <!-- Sabit Kategori Sekmeleri -->
+    <nav
+      aria-label="Menü Kategorileri"
+      class="sticky top-0 z-30 border-b border-stone-200/90 bg-[#FAF8F5]/95 backdrop-blur-md"
+    >
+      <div class="mx-auto max-w-2xl px-3 py-2.5">
+        <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar"></div>
+      </div>
+    </nav>
+
+    <!-- Ana Menü Listesi -->
+    <main class="mx-auto max-w-2xl px-4 pt-4 safe-bottom-pad">
+      <div id="menuSections" class="space-y-7"></div>
+
+      <footer class="mt-10 border-t border-stone-200 pt-5 text-center text-xs text-gray-500">
+        <p class="font-semibold text-gray-700">
+          Meşhur Adıyaman Çiğ Köftecisi Kadir Usta • Kahramanlar Şubesi
+        </p>
+        <p id="shopOperatorText" class="mt-1 font-medium text-gray-600">
+          İşletmeci: Sedat Evcin
+        </p>
+        <p class="mt-1">
+          Siparişiniz WhatsApp üzerinden doğrudan şubemize iletilir ve kasa onayı sonrası hemen
+          hazırlanır.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Alt Sabit Sepet Çubuğu -->
+    <div
+      id="floatingCartBar"
+      class="fixed inset-x-0 bottom-0 z-40 border-t border-stone-200 bg-white/95 backdrop-blur-md shadow-[0_-6px_24px_rgba(17,24,39,0.08)]"
+    >
+      <div class="mx-auto max-w-2xl px-4 py-3 flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <span
+              id="cartCountBadge"
+              class="inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-rose-800 px-2 text-xs font-extrabold text-white"
+            >
+              0
+            </span>
+            <span id="cartBarTotal" class="text-lg font-extrabold text-gray-900">0 TL</span>
+          </div>
+          <p id="cartBarHint" class="truncate text-xs font-medium text-gray-600 mt-0.5">
+            Sepetiniz boş • Ürün ekleyin
+          </p>
+        </div>
+
+        <button
+          id="openCartBtn"
+          type="button"
+          class="shrink-0 rounded-2xl bg-rose-800 hover:bg-rose-900 disabled:bg-stone-300 disabled:text-stone-500 active:scale-[0.98] px-5 py-3 text-sm font-extrabold text-white shadow-sm transition cursor-pointer disabled:cursor-not-allowed"
+          disabled
+        >
+          Sepeti Gör →
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL 1: Dürüm 3 Adımlı Özelleştirme (FR-01.2) -->
+    <div
+      id="durumModal"
+      class="modal-backdrop hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="durumModalTitle"
+    >
+      <div
+        class="w-full max-w-xl max-h-[90vh] flex flex-col rounded-t-3xl sm:rounded-3xl bg-white shadow-2xl overflow-hidden"
+      >
+        <div
+          class="flex items-start justify-between gap-3 border-b border-stone-200 bg-rose-50/70 px-5 py-4"
+        >
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 id="durumModalTitle" class="text-lg font-extrabold text-gray-900">Dürüm</h2>
+              <span
+                id="durumModalWeight"
+                class="rounded-lg bg-rose-100 px-2 py-0.5 text-xs font-bold text-rose-900"
+              ></span>
+            </div>
+            <p id="durumModalBasePrice" class="text-sm font-bold text-rose-800 mt-0.5"></p>
+          </div>
+          <button
+            type="button"
+            data-close-modal="durumModal"
+            aria-label="Kapat"
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-stone-100 border border-stone-200 text-lg font-bold cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="overflow-y-auto overscroll-contain px-5 py-4 space-y-6">
+          <!-- ADIM 1: Garnitür -->
+          <section>
+            <div class="flex items-center justify-between gap-2">
+              <div>
+                <h3 class="text-sm font-extrabold uppercase tracking-wide text-gray-900">
+                  1. Adım • Garnitür Seçimi
+                </h3>
+                <p id="garnishLimitSubtitle" class="text-xs text-gray-600">
+                  En fazla 6 çeşit garnitür seçebilirsiniz
+                </p>
+              </div>
+              <span
+                id="garnishCounterBadge"
+                class="rounded-full bg-stone-100 px-3 py-1 text-xs font-extrabold text-gray-800"
+              >
+                0 / 6 Seçildi
+              </span>
+            </div>
+
+            <!-- Hızlı Seçim Butonları -->
+            <div class="mt-3 flex flex-wrap gap-2">
+              <button
+                id="presetClassicSixBtn"
+                type="button"
+                class="rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 text-xs font-bold text-amber-950 transition cursor-pointer"
+              >
+                ⭐ Klasik 6'lı
+              </button>
+              <button
+                id="presetGreensBtn"
+                type="button"
+                class="rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 text-xs font-bold text-emerald-900 transition cursor-pointer"
+              >
+                🌿 Yeşillik
+              </button>
+              <button
+                id="presetSadeBtn"
+                type="button"
+                class="rounded-xl border border-stone-300 bg-stone-100 hover:bg-stone-200 px-3 py-1.5 text-xs font-bold text-gray-800 transition cursor-pointer"
+              >
+                🚫 Garnitürsüz (Sade)
+              </button>
+            </div>
+
+            <div
+              id="garnishLimitWarning"
+              class="hidden mt-2.5 rounded-xl border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-bold text-amber-900"
+            >
+              ⚠️ En fazla 6 çeşit garnitür seçebilirsiniz. Başka eklemek için mevcutlardan birini
+              kaldırın.
+            </div>
+
+            <div id="garnishGrid" class="mt-3 grid grid-cols-2 gap-2.5"></div>
+          </section>
+
+          <!-- ADIM 2: Sos -->
+          <section class="border-t border-stone-100 pt-4">
+            <h3 class="text-sm font-extrabold uppercase tracking-wide text-gray-900">
+              2. Adım • Sos Seçimi <span class="text-emerald-700">(Ücretsiz)</span>
+            </h3>
+            <div id="sauceGrid" class="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
+          </section>
+
+          <!-- ADIM 3: Doritos Ekstra -->
+          <section class="border-t border-stone-100 pt-4">
+            <h3 class="text-sm font-extrabold uppercase tracking-wide text-gray-900">
+              3. Adım • Ekstra Lezzet (İsteğe Bağlı)
+            </h3>
+            <label
+              id="doritosOptionCard"
+              class="mt-3 flex items-center justify-between gap-3 rounded-2xl border-2 border-stone-200 bg-stone-50/70 p-3.5 cursor-pointer transition"
+            >
+              <div class="flex items-center gap-3">
+                <input
+                  id="doritosCheckbox"
+                  type="checkbox"
+                  class="h-5 w-5 rounded border-gray-300 text-rose-800 accent-rose-800 cursor-pointer"
+                />
+                <div>
+                  <span class="block text-sm font-extrabold text-gray-900">
+                    🧀 Doritos Farkı Ekle
+                  </span>
+                  <span class="block text-xs text-gray-600">Çıtır Doritos cips ilavesi</span>
+                </div>
+              </div>
+              <span
+                id="doritosPriceTag"
+                class="rounded-xl bg-amber-100 px-2.5 py-1 text-xs font-extrabold text-amber-950"
+              >
+                +20 TL
+              </span>
+            </label>
+          </section>
+        </div>
+
+        <!-- Modal Alt Bar -->
+        <div
+          class="border-t border-stone-200 bg-stone-50 px-5 py-3.5 flex items-center justify-between gap-3"
+        >
+          <div class="flex items-center rounded-2xl border border-stone-300 bg-white p-1">
+            <button
+              id="durumQtyMinus"
+              type="button"
+              class="h-9 w-9 rounded-xl font-extrabold text-lg text-gray-700 hover:bg-stone-100 cursor-pointer"
+            >
+              −
+            </button>
+            <span id="durumQtyValue" class="w-8 text-center text-sm font-extrabold">1</span>
+            <button
+              id="durumQtyPlus"
+              type="button"
+              class="h-9 w-9 rounded-xl font-extrabold text-lg text-gray-700 hover:bg-stone-100 cursor-pointer"
+            >
+              +
+            </button>
+          </div>
+
+          <button
+            id="durumAddToCartBtn"
+            type="button"
+            class="flex-1 rounded-2xl bg-rose-800 hover:bg-rose-900 active:scale-[0.99] px-4 py-3 text-sm font-extrabold text-white shadow-sm transition cursor-pointer"
+          >
+            Sepete Ekle — 100 TL
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 2: Porsiyon / Paket İçeriği Kartı (FR-01.3) -->
+    <div
+      id="portionModal"
+      class="modal-backdrop hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="portionModalTitle"
+    >
+      <div
+        class="w-full max-w-lg flex flex-col rounded-t-3xl sm:rounded-3xl bg-white shadow-2xl overflow-hidden"
+      >
+        <div
+          class="flex items-start justify-between gap-3 border-b border-stone-200 bg-amber-50/70 px-5 py-4"
+        >
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 id="portionModalTitle" class="text-lg font-extrabold text-gray-900">Porsiyon</h2>
+              <span
+                id="portionModalWeight"
+                class="rounded-lg bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-950"
+              ></span>
+            </div>
+            <p id="portionModalPrice" class="text-sm font-bold text-rose-800 mt-0.5"></p>
+          </div>
+          <button
+            type="button"
+            data-close-modal="portionModal"
+            aria-label="Kapat"
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-stone-100 border border-stone-200 text-lg font-bold cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="px-5 py-4 space-y-4">
+          <div class="rounded-2xl border border-amber-200 bg-amber-50/60 p-4">
+            <h3 class="text-xs font-extrabold uppercase tracking-wide text-amber-950">
+              📦 Paket İçeriği (Sabit Gönderilir)
+            </h3>
+            <ul id="portionContentsList" class="mt-2.5 space-y-1.5 text-sm text-gray-800"></ul>
+          </div>
+
+          <div
+            class="rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-xs text-gray-700"
+          >
+            ℹ️ Porsiyon içeriklerimiz standarttır. Çıkarılmasını istediğiniz bir şey varsa (örn.
+            <em>"Acı sos koymayın"</em>) sepet ekranındaki <strong>Sipariş Notu</strong> alanına
+            yazabilirsiniz.
+          </div>
+        </div>
+
+        <div
+          class="border-t border-stone-200 bg-stone-50 px-5 py-3.5 flex items-center justify-between gap-3"
+        >
+          <div class="flex items-center rounded-2xl border border-stone-300 bg-white p-1">
+            <button
+              id="portionQtyMinus"
+              type="button"
+              class="h-9 w-9 rounded-xl font-extrabold text-lg text-gray-700 hover:bg-stone-100 cursor-pointer"
+            >
+              −
+            </button>
+            <span id="portionQtyValue" class="w-8 text-center text-sm font-extrabold">1</span>
+            <button
+              id="portionQtyPlus"
+              type="button"
+              class="h-9 w-9 rounded-xl font-extrabold text-lg text-gray-700 hover:bg-stone-100 cursor-pointer"
+            >
+              +
+            </button>
+          </div>
+
+          <button
+            id="portionAddToCartBtn"
+            type="button"
+            class="flex-1 rounded-2xl bg-rose-800 hover:bg-rose-900 active:scale-[0.99] px-4 py-3 text-sm font-extrabold text-white shadow-sm transition cursor-pointer"
+          >
+            Sepete Ekle — 300 TL
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 3: Sepet & Teslimat Tamamlama -->
+    <div
+      id="cartModal"
+      class="modal-backdrop hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartModalTitle"
+    >
+      <div
+        class="w-full max-w-xl max-h-[92vh] flex flex-col rounded-t-3xl sm:rounded-3xl bg-white shadow-2xl overflow-hidden"
+      >
+        <div
+          class="flex items-center justify-between gap-3 border-b border-stone-200 bg-stone-50 px-5 py-4"
+        >
+          <div>
+            <h2 id="cartModalTitle" class="text-lg font-extrabold text-gray-900">
+              Sepetim ve Teslimat
+            </h2>
+            <p class="text-xs text-gray-600">Bilgilerinizi kontrol edip WhatsApp ile gönderin</p>
+          </div>
+          <button
+            type="button"
+            data-close-modal="cartModal"
+            aria-label="Kapat"
+            class="flex h-9 w-9 items-center justify-center rounded-full bg-white text-gray-600 hover:bg-stone-100 border border-stone-200 text-lg font-bold cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="overflow-y-auto overscroll-contain px-5 py-4 space-y-5">
+          <!-- Sepet Kalemleri -->
+          <section>
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-extrabold uppercase tracking-wide text-gray-600">
+                Seçilen Ürünler
+              </h3>
+              <button
+                id="clearCartBtn"
+                type="button"
+                class="text-xs font-bold text-rose-700 hover:text-rose-900 cursor-pointer"
+              >
+                🗑️ Sepeti Temizle
+              </button>
+            </div>
+            <div id="cartItemsList" class="mt-2.5 space-y-2.5"></div>
+            <div
+              id="cartRuleAlert"
+              class="hidden mt-3 rounded-xl border border-amber-300 bg-amber-50 px-3.5 py-2.5 text-xs font-bold text-amber-950"
+            ></div>
+          </section>
+
+          <!-- Teslimat Şekli -->
+          <section class="border-t border-stone-100 pt-4">
+            <h3 class="text-sm font-extrabold text-gray-900">Teslimat Şekli</h3>
+            <div class="mt-2.5 grid grid-cols-2 gap-2">
+              <button
+                id="fulfillDeliveryBtn"
+                type="button"
+                class="rounded-2xl border-2 border-rose-800 bg-rose-50 px-3 py-2.5 text-xs font-extrabold text-rose-950 transition cursor-pointer"
+              >
+                🛵 Adrese Paket
+              </button>
+              <button
+                id="fulfillPickupBtn"
+                type="button"
+                class="rounded-2xl border border-stone-300 bg-white hover:bg-stone-50 px-3 py-2.5 text-xs font-bold text-gray-800 transition cursor-pointer"
+              >
+                🏪 Dükkandan Gel-Al
+              </button>
+            </div>
+            <div
+              id="pickupShopNotice"
+              class="hidden mt-2.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3.5 py-2.5 text-xs font-bold text-emerald-950"
+            ></div>
+          </section>
+
+          <!-- GPS Ön Mesafe Doğrulama -->
+          <section id="deliveryGpsSection" class="border-t border-stone-100 pt-4">
+            <div class="flex items-center justify-between gap-2">
+              <div>
+                <h3 class="text-sm font-extrabold text-gray-900">
+                  📍 Konum Ön Kontrolü (Opsiyonel)
+                </h3>
+                <p class="text-xs text-gray-600">
+                  İsterseniz konumunuzu kontrol edin; paylaşmadan da açık adresle sipariş verebilirsiniz
+                </p>
+              </div>
+              <button
+                id="checkoutGpsBtn"
+                type="button"
+                class="shrink-0 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 px-3 py-2 text-xs font-extrabold text-rose-900 cursor-pointer"
+              >
+                Konumu Al
+              </button>
+            </div>
+
+            <div
+              id="checkoutGpsStatus"
+              class="hidden mt-2.5 rounded-xl border px-3 py-2 text-xs font-semibold"
+            ></div>
+          </section>
+
+          <!-- Açık Adres -->
+          <section id="deliveryAddressSection" class="border-t border-stone-100 pt-4">
+            <label for="addressInput" class="block text-sm font-extrabold text-gray-900">
+              Açık Adres <span class="text-rose-700">*</span>
+            </label>
+            <p class="text-xs text-gray-600 mt-0.5">
+              Mahalle, sokak, bina no, kat, daire ve zil adını yazınız
+            </p>
+            <textarea
+              id="addressInput"
+              rows="2"
+              maxlength="200"
+              placeholder="Örn: Kahramanlar Mah. 1420 Sok. No:12 Kat:3 Daire:5 (Zil: Yılmaz)"
+              class="mt-2 w-full rounded-2xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-200"
+            ></textarea>
+            <div
+              id="addressDeliveryStatus"
+              class="hidden mt-2.5 rounded-xl border px-3 py-2 text-xs font-semibold"
+            ></div>
+          </section>
+
+          <!-- Aktif Ödeme Yöntemleri -->
+          <section class="border-t border-stone-100 pt-4">
+            <h3 class="text-sm font-extrabold text-gray-900">
+              Ödeme Yöntemi <span class="text-rose-700">*</span>
+            </h3>
+            <div id="paymentMethodsContainer" class="mt-2.5 grid grid-cols-1 gap-2"></div>
+            <div
+              id="ibanInfoNotice"
+              class="hidden mt-2.5 rounded-xl border border-sky-200 bg-sky-50 px-3.5 py-2.5 text-xs text-sky-950"
+            ></div>
+          </section>
+
+          <!-- Sipariş Notu -->
+          <section class="border-t border-stone-100 pt-4">
+            <div class="flex items-center justify-between">
+              <label for="noteInput" class="block text-sm font-extrabold text-gray-900">
+                Sipariş Notu <span class="text-xs font-normal text-gray-500">(İsteğe bağlı)</span>
+              </label>
+              <span id="noteCharCounter" class="text-xs text-gray-500">0 / 120</span>
+            </div>
+            <input
+              id="noteInput"
+              type="text"
+              maxlength="120"
+              placeholder="Örn: Zile basmayın, geldiğinizde arayın"
+              class="mt-2 w-full rounded-2xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-200"
+            />
+          </section>
+
+          <!-- Hata Mesajları -->
+          <div
+            id="checkoutErrorsBox"
+            class="hidden rounded-2xl border-2 border-red-300 bg-red-50 px-4 py-3 text-xs font-bold text-red-900 space-y-1"
+          ></div>
+
+          <!-- WhatsApp Mesaj Önizlemesi -->
+          <details class="rounded-2xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-xs">
+            <summary class="cursor-pointer font-bold text-gray-700 select-none">
+              👁️ Sipariş Özetini Önizle (Kopyalamak için metne dokunun)
+            </summary>
+            <pre
+              id="whatsAppPreviewText"
+              title="Kopyalamak için dokunun"
+              class="mt-2 cursor-pointer whitespace-pre-wrap break-words rounded-xl border border-stone-200 bg-white p-2.5 font-mono text-[11px] leading-relaxed text-gray-800 hover:border-emerald-400 active:bg-emerald-50/40 transition"
+            ></pre>
+            <p class="mt-1.5 text-[11px] font-semibold text-gray-500">
+              📋 Metni kopyalamak için yukarıdaki sipariş kutusuna dokunabilirsiniz.
+            </p>
+          </details>
+        </div>
+
+        <!-- Alt Gönderim Alanı -->
+        <div class="border-t border-stone-200 bg-stone-50 px-5 py-3.5 space-y-2">
+          <div class="flex items-center justify-between text-sm font-extrabold text-gray-900">
+            <span>Tahmini Toplam</span>
+            <span id="checkoutTotalLabel" class="text-lg text-rose-800">0 TL</span>
+          </div>
+
+          <button
+            id="sendWhatsAppBtn"
+            type="button"
+            class="w-full rounded-2xl bg-emerald-700 hover:bg-emerald-800 active:scale-[0.99] px-4 py-3.5 text-sm font-extrabold text-white shadow-sm transition cursor-pointer"
+          >
+            💬 WHATSAPP İLE SİPARİŞİ GÖNDER
+          </button>
+          <p id="copyFeedback" class="hidden text-center text-xs font-bold text-emerald-700"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bildirim Toast -->
+    <div
+      id="toastBanner"
+      class="hidden fixed top-4 left-1/2 -translate-x-1/2 z-[60] max-w-sm rounded-2xl bg-gray-900/95 px-4 py-2.5 text-center text-xs font-bold text-white shadow-lg"
+    ></div>
+
+    <script src="./menu-fallback.js"></script>
+    <script src="./menu-logic.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
