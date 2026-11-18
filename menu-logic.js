@@ -238,6 +238,48 @@
     return list.filter((m) => Boolean(m?.enabled));
   }
 
+  function isShopCurrentlyOpen(menuData, nowDate) {
+    const shop = menuData?.shop || {};
+    const schedule = shop.schedule || {};
+    const scheduleLabel = schedule.label || "Pzt–Cmt 11:00–21:00 (Pazar Kapalı)";
+
+    if (shop.isOpen === false) {
+      return {
+        open: false,
+        reason: "MANUAL_CLOSED",
+        scheduleLabel,
+        message: `Şubemiz şu anda paket servise kapalıdır. Çalışma saatlerimiz: ${scheduleLabel}.`,
+      };
+    }
+
+    if (schedule.enforce) {
+      const refDate = nowDate instanceof Date ? nowDate : new Date();
+      const offsetMinutes =
+        typeof schedule.utcOffsetMinutes === "number" ? schedule.utcOffsetMinutes : 180;
+      const localMs = refDate.getTime() + offsetMinutes * 60_000;
+      const local = new Date(localMs);
+      const jsDay = local.getUTCDay(); // 0=Pazar, 1=Pzt..6=Cmt
+      const isoWeekday = jsDay === 0 ? 7 : jsDay;
+      const hour = local.getUTCHours();
+      const openHour = typeof schedule.openHour === "number" ? schedule.openHour : 11;
+      const closeHour = typeof schedule.closeHour === "number" ? schedule.closeHour : 21;
+      const closedDays = Array.isArray(schedule.closedIsoWeekdays)
+        ? schedule.closedIsoWeekdays
+        : [7];
+
+      if (closedDays.includes(isoWeekday) || hour < openHour || hour >= closeHour) {
+        return {
+          open: false,
+          reason: "OUTSIDE_HOURS",
+          scheduleLabel,
+          message: `Şubemiz şu anda mesai saatleri dışındadır. Çalışma saatlerimiz: ${scheduleLabel}.`,
+        };
+      }
+    }
+
+    return { open: true, reason: null, scheduleLabel, message: null };
+  }
+
   function validateCheckout({
     menuData,
     cartItems,
@@ -245,16 +287,16 @@
     paymentMethodCode,
     gpsCheck,
     fulfillmentType = "DELIVERY",
+    nowDate,
   }) {
     const errors = [];
     const shop = menuData?.shop;
     const rules = shop?.rules || {};
     const isPickup = fulfillmentType === "PICKUP";
 
-    if (shop && shop.isOpen === false) {
-      errors.push(
-        "Şubemiz şu anda paket servise kapalıdır. Çalışma saatlerimiz içinde tekrar bekleriz."
-      );
+    const openStatus = isShopCurrentlyOpen(menuData, nowDate);
+    if (!openStatus.open && openStatus.message) {
+      errors.push(openStatus.message);
     }
 
     const summary = computeCartSummary(cartItems, rules);
@@ -395,6 +437,7 @@
     computeItemUnitPrice,
     computeCartSummary,
     getEnabledPaymentMethods,
+    isShopCurrentlyOpen,
     validateCheckout,
     formatFastPathWhatsAppMessage,
     formatWhatsAppPreviewMessage,

@@ -1,7 +1,7 @@
 // Otomatik üretildi — yerel file:// açılışları için yedek menü verisi.
 window.KADIR_USTA_MENU_FALLBACK = {
   "schemaVersion": "1.0",
-  "generatedAt": "2026-11-18 23:33:28",
+  "generatedAt": "2026-11-18 23:52:48",
   "shop": {
     "name": "Meşhur Adıyaman Çiğ Köftecisi Kadir Usta - Kahramanlar Şubesi",
     "shortName": "Meşhur Adıyaman Çiğ Köftecisi Kadir Usta",
@@ -11,6 +11,17 @@ window.KADIR_USTA_MENU_FALLBACK = {
     "lat": 38.428129,
     "lon": 27.151889,
     "isOpen": false,
+    "schedule": {
+      "timezone": "Europe/Istanbul",
+      "utcOffsetMinutes": 180,
+      "openHour": 11,
+      "closeHour": 21,
+      "closedIsoWeekdays": [
+        7
+      ],
+      "enforce": true,
+      "label": "Pzt–Cmt 11:00–21:00 (Pazar Kapalı)"
+    },
     "whatsappPhone": "905326535962",
     "webMenuUrl": "https://adiyaman-cigkofte-kahramanlar.github.io",
     "rules": {

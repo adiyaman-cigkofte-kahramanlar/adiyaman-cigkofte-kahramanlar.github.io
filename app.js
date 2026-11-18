@@ -98,8 +98,9 @@
   }
 
   function addItemToCart({ product, quantity, garnishes, sauces, hasDoritos }) {
-    if (state.menuData?.shop?.isOpen === false) {
-      showToast("Şubemiz şu anda paket servise kapalıdır.");
+    const openStatus = logic.isShopCurrentlyOpen(state.menuData);
+    if (!openStatus.open) {
+      showToast(openStatus.message || "Şubemiz şu anda paket servise kapalıdır.");
       return;
     }
     const rules = getActiveRules();
@@ -176,12 +177,22 @@
     $("shopAddressText").querySelector("span").textContent = shop.address;
     $("minOrderBadge").textContent = `Min. Paket: ${rules.minOrderAmountTl} TL`;
 
+    const openStatus = logic.isShopCurrentlyOpen(state.menuData);
+    const hoursBadge = $("businessHoursBadge");
+    if (hoursBadge) {
+      hoursBadge.textContent = `🕒 ${openStatus.scheduleLabel}`;
+    }
+
     const badge = $("shopStatusBadge");
     const closedBanner = $("shopClosedBanner");
-    if (shop.isOpen === false) {
+    const closedBannerText = $("shopClosedBannerText");
+    if (!openStatus.open) {
       badge.className =
         "inline-flex shrink-0 items-center gap-1.5 rounded-full bg-red-950/70 border border-red-300/50 px-3 py-1 text-xs font-bold text-red-100";
-      badge.innerHTML = `<span class="h-2 w-2 rounded-full bg-red-300"></span>Şu An Kapalı`;
+      badge.innerHTML = `<span class="h-2 w-2 rounded-full bg-red-300"></span>${openStatus.reason === "OUTSIDE_HOURS" ? "Mesai Dışı" : "Şu An Kapalı"}`;
+      if (closedBannerText && openStatus.message) {
+        closedBannerText.textContent = `🌙 ${openStatus.message}`;
+      }
       closedBanner.classList.remove("hidden");
     } else {
       badge.className =
@@ -282,7 +293,7 @@
     const actionCol = document.createElement("div");
     actionCol.className = "shrink-0 flex flex-col items-end gap-1.5";
 
-    const isShopClosed = state.menuData?.shop?.isOpen === false;
+    const isShopClosed = !logic.isShopCurrentlyOpen(state.menuData).open;
 
     if (product.requiresGarnish) {
       const btn = document.createElement("button");
