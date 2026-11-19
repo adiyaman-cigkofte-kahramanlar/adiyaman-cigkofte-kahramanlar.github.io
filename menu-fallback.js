@@ -1,7 +1,7 @@
 // Otomatik üretildi — yerel file:// açılışları için yedek menü verisi.
 window.KADIR_USTA_MENU_FALLBACK = {
   "schemaVersion": "1.0",
-  "generatedAt": "2026-11-18 23:52:48",
+  "generatedAt": "2026-11-19 20:56:28",
   "shop": {
     "name": "Meşhur Adıyaman Çiğ Köftecisi Kadir Usta - Kahramanlar Şubesi",
     "shortName": "Meşhur Adıyaman Çiğ Köftecisi Kadir Usta",
@@ -10,7 +10,7 @@ window.KADIR_USTA_MENU_FALLBACK = {
     "address": "Kahramanlar Mah. 1420 Sk. No: 28/B, Konak/İzmir",
     "lat": 38.428129,
     "lon": 27.151889,
-    "isOpen": false,
+    "isOpen": true,
     "schedule": {
       "timezone": "Europe/Istanbul",
       "utcOffsetMinutes": 180,
@@ -19,7 +19,7 @@ window.KADIR_USTA_MENU_FALLBACK = {
       "closedIsoWeekdays": [
         7
       ],
-      "enforce": true,
+      "enforce": false,
       "label": "Pzt–Cmt 11:00–21:00 (Pazar Kapalı)"
     },
     "whatsappPhone": "905326535962",
